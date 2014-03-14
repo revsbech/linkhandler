@@ -141,10 +141,11 @@ class tx_linkhandler_service_eid {
 
 		$GLOBALS['TSFE']->connectToDB();
 		$GLOBALS['TSFE']->initFEuser(); //!TODO first check if already a fe_user session exists - otherwise this line will overwrite the existing one
-		$GLOBALS['TSFE']->checkAlternativeIdMethods();
+		\TYPO3\CMS\Core\Core\Bootstrap::getInstance()->loadCachedTca();
 
+		$GLOBALS['TSFE']->checkAlternativeIdMethods();
 		$GLOBALS['TSFE']->determineId();
-		$GLOBALS['TSFE']->getCompressedTCarray();
+		
 		$GLOBALS['TSFE']->initTemplate();
 		$GLOBALS['TSFE']->getConfigArray();
 		$GLOBALS['TSFE']->cObj = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('tslib_cObj');
